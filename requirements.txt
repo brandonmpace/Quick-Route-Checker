@@ -1,0 +1,3 @@
+logcontrol>=0.0.5
+routeparser>=0.0.2
+wxPython>=4.0.1
