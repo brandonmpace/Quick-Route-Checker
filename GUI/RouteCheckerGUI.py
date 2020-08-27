@@ -56,7 +56,18 @@ class MainFrame(BaseMainFrame):
         self.Bind(wx.EVT_BUTTON, self.on_button_paste_text, self.notebook_main.button_paste_text)
         self.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.on_notebook_page_changed, self.notebook_main)
 
+    def generate_tab_name(self, prefix: str = "") -> str:
+        """Generate a tab name that is not currently used"""
+        counter = 0
+        while True:
+            name = f"{prefix}{counter}"
+            if self.notebook_main.GetPageByText(name) is None:
+                return name
+            else:
+                counter += 1
+
     def handle_new_input_source(self, tab_name: str, lines: List[str]) -> bool:
+        """Parse input lines into route objects and populate a new tab on success."""
         matches = routeparser.identify_input(lines)
         if not matches:
             show_error("Unable to identify type of route command output")
@@ -187,6 +198,7 @@ class MainApp(wx.App):
 
 
 class PasteDialog(PasteDialogBase):
+    """Dialog where user can paste lines of output for processing"""
     def __init__(self, parent: MainFrame, *args, **kwds):
         PasteDialogBase.__init__(self, parent, *args, **kwds)
         self.SetIcon(RouteCheckerIcon.GetIcon())
@@ -198,10 +210,14 @@ class PasteDialog(PasteDialogBase):
     def on_button_paste_ok(self, event):
         parent: MainFrame = self.GetParent()
         tab_name = self.text_ctrl_tab_name_input.GetValue()
+
         if not tab_name:
-            return show_error("Please provide a tab name")
-        elif parent.notebook_main.GetPageByText(tab_name) is not None:
+            tab_name = parent.generate_tab_name(prefix="pasted_")
+            self.text_ctrl_tab_name_input.SetValue(tab_name)
+
+        if parent.notebook_main.GetPageByText(tab_name) is not None:
             return show_error(f"Tab with name '{tab_name}' already exists!")
+
         lines = self.text_ctrl_paste.GetValue()
         if not lines:
             return show_error("Please provide input or select Cancel")
