@@ -73,17 +73,20 @@ class MainFrame(BaseMainFrame):
             show_error("Unable to identify type of route command output")
             return False
 
-        if len(matches) == 1:
+        match_count = len(matches)
+        if match_count == 1:
             selection = matches[0]
         else:
-            logger.info(f"Multiple matches: '{matches}'")
+            if match_count == 0:
+                logger.info("No matches found for input")
+            else:
+                logger.info(f"Multiple matches: '{matches}'")
             question = wx.SingleChoiceDialog(
                 self, "Could not identify input type. Please choose one:", "Error", matches
             )
             response = question.ShowModal()
             if response == wx.ID_OK:
                 selection = question.GetStringSelection()
-                print(selection)
             elif response == wx.ID_CANCEL:
                 logger.warning(f"User aborted parsing from multiple match dialog")
                 return False
@@ -289,11 +292,15 @@ class RoutePanel(RoutePanelBase):
             self.list_id_to_route.clear()
             self.route_to_list_id.clear()
             for route in self.routes.routes:
+                if route.special:
+                    gateway = route.special_route_type
+                else:
+                    gateway = route.gateway.compressed if route.gateway else ""
                 index = self.list_ctrl_routes.Append(
                     (
                         route.network.compressed,
                         route.netmask,
-                        route.gateway.compressed if route.gateway else "",
+                        gateway,
                         route.interface,
                         route.metric
                     )
