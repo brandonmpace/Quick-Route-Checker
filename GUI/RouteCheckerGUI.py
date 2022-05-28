@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-# Copyright (C) 2020 Brandon M. Pace
+# Copyright (C) 2020,  2022 Brandon M. Pace
 #
 # This file is part of Quick Route Checker
 #
@@ -153,7 +153,7 @@ class MainFrame(BaseMainFrame):
         info.SetName("Quick Route Checker")
         info.SetVersion("0.2")
         info.SetDescription(program_description)
-        info.SetCopyright('(C) 2020 Brandon M. Pace <brandonmpace@gmail.com>')
+        info.SetCopyright('(C) 2020,  2022 Brandon M. Pace <brandonmpace@gmail.com>')
         info.SetWebSite("https://github.com/brandonmpace/Quick-Route-Checker")
         info.SetLicense(program_license)
         # info.AddDeveloper('Brandon M. Pace <brandonmpace@gmail.com>')

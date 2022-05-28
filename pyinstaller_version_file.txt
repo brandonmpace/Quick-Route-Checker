@@ -43,7 +43,7 @@ VSVersionInfo(
         # NOTE: This 'FileVersion' is over-written with the filevers contents! Change that instead!
         StringStruct(u'FileVersion', u'0.0.0.0'),
         StringStruct(u'InternalName', u''),
-        StringStruct(u'LegalCopyright', u'Copyright © Brandon M. Pace 2020'),
+        StringStruct(u'LegalCopyright', u'Copyright © Brandon M. Pace 2020,  2022'),
         StringStruct(u'OriginalFilename', u'Quick_Route_Checker.exe'),
         StringStruct(u'ProductName', u'Quick Route Checker'),
         # NOTE: This is where you should change the version:

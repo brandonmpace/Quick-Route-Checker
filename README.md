@@ -1,6 +1,6 @@
 # Quick Route Checker
 
-Copyright (C) 2020 Brandon M. Pace <brandonmpace@gmail.com>
+Copyright (C) 2020,  2022 Brandon M. Pace <brandonmpace@gmail.com>
 
 License: LGPL-3.0-or-later
 
