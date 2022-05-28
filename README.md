@@ -27,3 +27,5 @@ It can then help identify routes that match a given address or network.
     0.1: (2020-05-06) Initial release
 
     0.2: (2020-08-26) Bugfix for 'ip route' output
+
+    0.3: (2022-05-28) Add support for special Linux routes (e.g. blackhole)

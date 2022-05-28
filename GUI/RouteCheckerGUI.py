@@ -151,7 +151,7 @@ class MainFrame(BaseMainFrame):
         info = wx.adv.AboutDialogInfo()
         info.SetIcon(RouteChecker128.GetIcon())
         info.SetName("Quick Route Checker")
-        info.SetVersion("0.2")
+        info.SetVersion("0.3")
         info.SetDescription(program_description)
         info.SetCopyright('(C) 2020,  2022 Brandon M. Pace <brandonmpace@gmail.com>')
         info.SetWebSite("https://github.com/brandonmpace/Quick-Route-Checker")
